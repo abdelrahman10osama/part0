@@ -1,0 +1,14 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+    Note right of browser: المستخدم يكتب ملاحظة ويضغط Save
+    Note right of browser: كود الـ JS يضيف الملاحظة فوراً للقائمة ويحدث الشاشة (DOM)
+
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+    activate server
+    Note left of server: الخادم يستلم البيانات بصيغة JSON ويحفظها
+    server-->>browser: 201 Created (الخادم يؤكد الاستلام)
+    deactivate server
+
+    Note right of browser: لا يتم إعادة تحميل الصفحة، الملاحظة موجودة بالفعل بفضل كود الجافا سكريبت
